@@ -78,14 +78,13 @@ the power of machine learning algorithms. See the original talon implementation.
 virtualenv venv
 source venv/bin/activate
 
-pip install -e .[tests,dev]
+make install
 
-nosetests
+make test
 ```
 
-Upload new version
+Release new version:
 
 ```
-python setup.py sdist
-twine upload dist/*
+make release
 ```
