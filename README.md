@@ -1,5 +1,4 @@
-claw
-=====
+# claw
 
 Library to extract message quotations and signatures.
 This is a more light-weight version of the original [mailgun/talon](https://github.com/mailgun/talon) library.
@@ -8,8 +7,7 @@ If you ever tried to parse message quotations or signatures you know that absenc
 Hopefully this library will make your life much easier.
 
 
-Usage
------
+## Usage
 
 Here’s how you initialize the library and extract a reply from a text
 message:
@@ -72,3 +70,22 @@ text, signature = extract_signature(message)
 
 Quick and works like a charm 90% of the time. For other 10% you can use
 the power of machine learning algorithms. See the original talon implementation.
+
+
+## Development
+
+```
+virtualenv venv
+source venv/bin/activate
+
+pip install -e .[tests,dev]
+
+nosetests
+```
+
+Upload new version
+
+```
+python setup.py sdist
+twine upload dist/*
+```

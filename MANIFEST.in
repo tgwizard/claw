@@ -3,4 +3,4 @@ recursive-exclude tests *.pyc *~
 recursive-exclude c;aw *.pyc *~
 include LICENSE
 include MANIFEST.in
-include README.rst
+include README.md
