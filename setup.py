@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='claw',
-    version='1.0.0rc3',
+    version='1.0.0rc4',
     description="Library to extract message quotations and signatures.",
     long_description=open(os.path.join(os.path.dirname(__file__), "README.md")).read(),
     author='Adam Renberg',
