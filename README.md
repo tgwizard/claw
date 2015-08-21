@@ -56,7 +56,7 @@ signature from email message without any
 machine learning fancy stuff:
 
 ```python
-from claw.signature.bruteforce import extract_signature
+from claw.signature import extract_signature
 
 
 message = """Wow. Awesome!
