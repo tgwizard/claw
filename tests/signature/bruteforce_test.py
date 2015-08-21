@@ -6,7 +6,7 @@ import os
 
 from flanker import mime
 
-from talon.signature import bruteforce
+from claw.signature import bruteforce
 
 
 def test_empty_body():

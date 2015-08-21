@@ -3,7 +3,7 @@
 import logging
 from random import shuffle
 
-from talon.constants import RE_DELIMITER
+from claw.constants import RE_DELIMITER
 
 
 log = logging.getLogger(__name__)

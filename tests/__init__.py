@@ -1,7 +1,7 @@
 from nose.tools import *
 from mock import *
 
-import talon
+import claw
 
 
 EML_MSG_FILENAME = "tests/fixtures/standard_replies/yahoo.eml"
@@ -15,4 +15,4 @@ UNICODE_MSG = ("tests/fixtures/signature/emails/P/"
                "unicode_msg")
 
 
-talon.init()
+claw.init()

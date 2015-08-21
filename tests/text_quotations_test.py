@@ -7,7 +7,7 @@ import os
 
 from flanker import mime
 
-from talon import quotations
+from claw import quotations
 
 
 @patch.object(quotations, 'MAX_LINES_COUNT', 1)

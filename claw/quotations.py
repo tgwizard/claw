@@ -12,9 +12,9 @@ from copy import deepcopy
 from lxml import html, etree
 import html2text
 
-from talon.constants import RE_DELIMITER
-from talon.utils import random_token, get_delimiter
-from talon import html_quotations
+from claw.constants import RE_DELIMITER
+from claw.utils import random_token, get_delimiter
+from claw import html_quotations
 
 
 log = logging.getLogger(__name__)

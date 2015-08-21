@@ -1,6 +1,6 @@
 from . import *
 
-from talon import utils
+from claw import utils
 
 
 def test_get_delimiter():

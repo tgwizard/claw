@@ -5,7 +5,7 @@ from . fixtures import *
 
 from flanker import mime
 
-from talon import quotations
+from claw import quotations
 
 
 @patch.object(quotations, 'extract_from_html')

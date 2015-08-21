@@ -6,7 +6,7 @@ from . fixtures import *
 import regex as re
 from flanker import mime
 
-from talon import quotations
+from claw import quotations
 
 import html2text
 

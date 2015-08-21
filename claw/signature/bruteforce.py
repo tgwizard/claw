@@ -2,8 +2,8 @@ import logging
 
 import regex as re
 
-from talon.utils import get_delimiter
-from talon.signature.constants import (SIGNATURE_MAX_LINES,
+from claw.utils import get_delimiter
+from claw.signature.constants import (SIGNATURE_MAX_LINES,
                                        TOO_LONG_SIGNATURE_LINE)
 
 log = logging.getLogger(__name__)
