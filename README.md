@@ -6,6 +6,12 @@ This is a more light-weight version of the original [mailgun/talon](https://gith
 If you ever tried to parse message quotations or signatures you know that absence of any formatting standards in this area could make this task a nightmare.
 Hopefully this library will make your life much easier.
 
+## Installation
+
+```
+pip install claw
+```
+
 
 ## Usage
 
