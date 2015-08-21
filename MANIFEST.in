@@ -1,9 +1,6 @@
-recursive-include tests *
-recursive-include talon *
+recursive-include claw *
 recursive-exclude tests *.pyc *~
-recursive-exclude talon *.pyc *~
-include train.data
-include classifier
+recursive-exclude c;aw *.pyc *~
 include LICENSE
 include MANIFEST.in
 include README.rst
