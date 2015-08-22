@@ -7,6 +7,8 @@ claw
 Claw, https://github.com/tgwizard/claw, is a library to extract message quotations and signatures.
 It is is a more light-weight version of the original https://github.com/mailgun/talon library.
 
+`Changelog <https://github.com/tgwizard/claw/blob/master/CHANGELOG.md>`_
+
 If you ever tried to parse message quotations or signatures you know that absence of any formatting standards in this area could make this task a nightmare.
 Hopefully this library will make your life much easier.
 
