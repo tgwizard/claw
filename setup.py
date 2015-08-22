@@ -22,9 +22,10 @@ setup(
     ],
     extras_require={
         'tests': [
-            'nose==1.2.1',
-            'mock',
-            'coverage',
+            'pytest==2.7.2',
+            'nose==1.3.7',
+            'mock==1.3.0',
+            'coverage==3.7.1',
             'flanker',
             'tox',
         ],

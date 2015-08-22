@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from .. import *
+from mock import Mock, patch
+from nose.tools import *
 
-import os
-
-from flanker import mime
 
 from claw.signature import bruteforce
 

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from . import *
 from . fixtures import *
 
 import os
 
+from mock import patch
+from nose.tools import *
 from flanker import mime
 
 from claw import quotations

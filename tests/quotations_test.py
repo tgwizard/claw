@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from . import *
-from . fixtures import *
-
-from flanker import mime
+from mock import Mock, patch
+from nose.tools import *
 
 from claw import quotations
 

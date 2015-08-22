@@ -1,4 +1,6 @@
-from . import *
+# -*- coding: utf-8 -*-
+
+from nose.tools import *
 
 from claw import utils
 
