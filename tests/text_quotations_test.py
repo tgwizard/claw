@@ -213,6 +213,7 @@ On 04/19/2011 07:10 AM, Roman Tkachenko wrote:
 > Hello"""
     eq_("Hi", quotations.extract_from_plain(msg_body))
 
+
 def test_with_indent():
     msg_body = """YOLO salvia cillum kogi typewriter mumblecore cardigan skateboard Austin.
 
@@ -260,6 +261,7 @@ Subject: The manager has commented on your Loop
 Blah-blah-blah
 """))
 
+
 def test_german_from_block():
     eq_('Allo! Follow up MIME!', quotations.extract_from_plain(
     """Allo! Follow up MIME!
@@ -271,6 +273,7 @@ Betreff: The manager has commented on your Loop
 
 Blah-blah-blah
 """))
+
 
 def test_french_multiline_from_block():
     eq_('Lorem ipsum', quotations.extract_from_plain(
@@ -284,6 +287,7 @@ Objet : Follow Up
 Blah-blah-blah
 """))
 
+
 def test_french_from_block():
     eq_('Lorem ipsum', quotations.extract_from_plain(
     u"""Lorem ipsum
@@ -291,6 +295,7 @@ def test_french_from_block():
 Le 23 janv. 2015 à 22:03, Brendan xxx <brendan.xxx@xxx.com<mailto:brendan.xxx@xxx.com>> a écrit:
 
 Bonjour!"""))
+
 
 def test_polish_from_block():
     eq_('Lorem ipsum', quotations.extract_from_plain(
@@ -301,6 +306,7 @@ napisał:
 
 Blah!
 """))
+
 
 def test_danish_from_block():
     eq_('Allo! Follow up MIME!', quotations.extract_from_plain(
@@ -313,6 +319,7 @@ Emne: The manager has commented on your Loop
 
 Blah-blah-blah
 """))
+
 
 def test_dutch_from_block():
     eq_('Gluten-free culpa lo-fi et nesciunt nostrud.', quotations.extract_from_plain(
