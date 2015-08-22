@@ -6,6 +6,7 @@ import os
 
 from mock import patch
 from nose.tools import *
+import pytest
 from flanker import mime
 
 from claw import quotations
@@ -612,25 +613,35 @@ def test_preprocess_postprocess_2_links():
     eq_(msg_body, quotations.extract_from_plain(msg_body))
 
 
-def test_standard_replies():
-    for filename in os.listdir(STANDARD_REPLIES):
-        filename = os.path.join(STANDARD_REPLIES, filename)
-        if os.path.isdir(filename):
-            continue
-        with open(filename) as f:
-            msg = f.read()
-            m = mime.from_string(msg)
+@pytest.mark.parametrize('filename', STANDARD_REPLIES_FILENAMES)
+def test_standard_replies(filename):
+    def check_part(email_part):
+        text = email_part.body
+        parsed = quotations.extract_from_plain(text)
+        reply_text_fn = filename[:-4] + '_reply_text'
+        if os.path.isfile(reply_text_fn):
+            with open(reply_text_fn) as f:
+                expected_text = f.read()
+        else:
+            expected_text = 'Hello'
+
+        assert parsed == expected_text, 'Parsed text was incorrect for file {0}'.format(
+            filename
+        )
+
+    with open(filename) as f:
+        msg = f.read()
+        m = mime.from_string(msg)
+
+        found_text_plain_part = False
+        if m.content_type == 'text/plain':
+            found_text_plain_part = True
+            check_part(m)
+        else:
             for part in m.walk():
                 if part.content_type == 'text/plain':
-                    text = part.body
-                    stripped_text = quotations.extract_from_plain(text)
-                    reply_text_fn = filename[:-4] + '_reply_text'
-                    if os.path.isfile(reply_text_fn):
-                        with open(reply_text_fn) as f:
-                            reply_text = f.read()
-                    else:
-                        reply_text = 'Hello'
-                    eq_(reply_text, stripped_text,
-                        "'%(reply)s' != %(stripped)s for %(fn)s" %
-                        {'reply': reply_text, 'stripped': stripped_text,
-                         'fn': filename})
+                    found_text_plain_part = True
+                    check_part(part)
+
+        if not found_text_plain_part:
+            pytest.fail('Could not find text/plain part in email {0}'.format(filename))
