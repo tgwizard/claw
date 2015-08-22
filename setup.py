@@ -30,7 +30,7 @@ setup(
             'tox',
         ],
         'dev': [
-            'twine'
+            'twine',
         ]
     },
 )
