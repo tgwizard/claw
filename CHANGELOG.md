@@ -1,3 +1,7 @@
+### UNRELEASED
+
+ - Fixed bug when parsing replies from Apple Mail, when a trailing `>` would be included.
+
 ### v1.0.0 2015-08-22
 
 First version of claw released, forked off from talon v1.0.2.
