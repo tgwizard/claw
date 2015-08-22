@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     install_requires=[
         'lxml==2.3.3',
-        'regex==0.1.20110315',
+        'regex>=2015.07.19',
         'html2text',
         'setuptools>=17.1',
     ],
