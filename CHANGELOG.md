@@ -1,6 +1,6 @@
-### UNRELEASED
+### v1.0.1 2015-08-23
 
- - Fixed bug when parsing replies from Apple Mail, when a trailing `>` would be included.
+ - Fixed bug when parsing replies from Apple Mail, where a trailing `>` would be included.
 
 ### v1.0.0 2015-08-22
 
