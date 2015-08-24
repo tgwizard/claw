@@ -274,6 +274,16 @@ Betreff: The manager has commented on your Loop
 Blah-blah-blah
 """))
 
+def test_german_from_block2():
+    eq_('Allo! Follow up MIME!', quotations.extract_from_plain(
+    """Allo! Follow up MIME!
+
+Am 17-feb.-2015 schrieb Julius Caesar <pantheon@rome.com>:
+
+
+Blah-blah-blah
+"""))
+
 
 def test_french_multiline_from_block():
     eq_('Lorem ipsum', quotations.extract_from_plain(
