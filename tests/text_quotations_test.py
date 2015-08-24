@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from . import *
 from . fixtures import *
 
 import os
 
+from mock import patch
+from nose.tools import *
+import pytest
 from flanker import mime
 
-from talon import quotations
+from claw import quotations
 
 
 @patch.object(quotations, 'MAX_LINES_COUNT', 1)
@@ -31,6 +33,16 @@ On 11-Apr-2011, at 6:54 PM, Roman Tkachenko <romant@example.com> wrote:
 > Roman"""
 
     eq_("Test reply", quotations.extract_from_plain(msg_body))
+
+
+def test_pattern_on_date_wrote_somebody():
+    eq_('Lorem', quotations.extract_from_plain(
+    """Lorem
+
+Op 13-02-2014 3:18 schreef Julius Caesar <pantheon@rome.com>:
+    
+Veniam laborum mlkshk kale chips authentic. Normcore mumblecore laboris, fanny pack readymade eu blog chia pop-up freegan enim master cleanse.
+"""))
 
 
 def test_pattern_on_date_somebody_wrote_date_with_slashes():
@@ -202,6 +214,34 @@ On 04/19/2011 07:10 AM, Roman Tkachenko wrote:
     eq_("Hi", quotations.extract_from_plain(msg_body))
 
 
+def test_with_indent():
+    msg_body = """YOLO salvia cillum kogi typewriter mumblecore cardigan skateboard Austin.
+
+------On 12/29/1987 17:32 PM, Julius Caesar wrote-----
+
+Brunch mumblecore pug Marfa tofu, irure taxidermy hoodie readymade pariatur. 
+    """
+    eq_("YOLO salvia cillum kogi typewriter mumblecore cardigan skateboard Austin.", quotations.extract_from_plain(msg_body))
+
+
+def test_short_quotation_with_newline():
+    msg_body = """Btw blah blah...
+
+On Tue, Jan 27, 2015 at 12:42 PM -0800, "Company" <christine.XXX@XXX.com> wrote:
+
+Hi Mark,
+Blah blah? 
+Thanks,Christine 
+
+On Jan 27, 2015, at 11:55 AM, Mark XXX <mark@XXX.com> wrote:
+
+Lorem ipsum?
+Mark
+
+Sent from Acompli"""
+    eq_("Btw blah blah...", quotations.extract_from_plain(msg_body))
+
+
 def test_pattern_date_email_with_unicode():
     msg_body = """Replying ok
 2011/4/7 Nathan \xd0\xb8ova <support@example.com>
@@ -221,6 +261,7 @@ Subject: The manager has commented on your Loop
 Blah-blah-blah
 """))
 
+
 def test_german_from_block():
     eq_('Allo! Follow up MIME!', quotations.extract_from_plain(
     """Allo! Follow up MIME!
@@ -233,6 +274,40 @@ Betreff: The manager has commented on your Loop
 Blah-blah-blah
 """))
 
+
+def test_french_multiline_from_block():
+    eq_('Lorem ipsum', quotations.extract_from_plain(
+    u"""Lorem ipsum
+
+De : Brendan xxx [mailto:brendan.xxx@xxx.com]
+Envoyé : vendredi 23 janvier 2015 16:39
+À : Camille XXX
+Objet : Follow Up
+
+Blah-blah-blah
+"""))
+
+
+def test_french_from_block():
+    eq_('Lorem ipsum', quotations.extract_from_plain(
+    u"""Lorem ipsum
+
+Le 23 janv. 2015 à 22:03, Brendan xxx <brendan.xxx@xxx.com<mailto:brendan.xxx@xxx.com>> a écrit:
+
+Bonjour!"""))
+
+
+def test_polish_from_block():
+    eq_('Lorem ipsum', quotations.extract_from_plain(
+    u"""Lorem ipsum
+
+W dniu 28 stycznia 2015 01:53 użytkownik Zoe xxx <zoe.xxx@xxx.com>
+napisał:
+
+Blah!
+"""))
+
+
 def test_danish_from_block():
     eq_('Allo! Follow up MIME!', quotations.extract_from_plain(
     """Allo! Follow up MIME!
@@ -243,6 +318,16 @@ Til: Somebody
 Emne: The manager has commented on your Loop
 
 Blah-blah-blah
+"""))
+
+
+def test_dutch_from_block():
+    eq_('Gluten-free culpa lo-fi et nesciunt nostrud.', quotations.extract_from_plain(
+    """Gluten-free culpa lo-fi et nesciunt nostrud. 
+
+Op 17-feb.-2015, om 13:18 heeft Julius Caesar <pantheon@rome.com> het volgende geschreven:
+    
+Small batch beard laboris tempor, non listicle hella Tumblr heirloom. 
 """))
 
 
@@ -535,25 +620,35 @@ def test_preprocess_postprocess_2_links():
     eq_(msg_body, quotations.extract_from_plain(msg_body))
 
 
-def test_standard_replies():
-    for filename in os.listdir(STANDARD_REPLIES):
-        filename = os.path.join(STANDARD_REPLIES, filename)
-        if os.path.isdir(filename):
-            continue
-        with open(filename) as f:
-            msg = f.read()
-            m = mime.from_string(msg)
+@pytest.mark.parametrize('filename', STANDARD_REPLIES_FILENAMES)
+def test_standard_replies(filename):
+    def check_part(email_part):
+        text = email_part.body
+        parsed = quotations.extract_from_plain(text)
+        reply_text_fn = filename[:-4] + '_reply_text'
+        if os.path.isfile(reply_text_fn):
+            with open(reply_text_fn) as f:
+                expected_text = f.read()
+        else:
+            expected_text = 'Hello'
+
+        assert parsed == expected_text, 'Parsed text was incorrect for file {0}'.format(
+            filename
+        )
+
+    with open(filename) as f:
+        msg = f.read()
+        m = mime.from_string(msg)
+
+        found_text_plain_part = False
+        if m.content_type == 'text/plain':
+            found_text_plain_part = True
+            check_part(m)
+        else:
             for part in m.walk():
                 if part.content_type == 'text/plain':
-                    text = part.body
-                    stripped_text = quotations.extract_from_plain(text)
-                    reply_text_fn = filename[:-4] + '_reply_text'
-                    if os.path.isfile(reply_text_fn):
-                        with open(reply_text_fn) as f:
-                            reply_text = f.read()
-                    else:
-                        reply_text = 'Hello'
-                    eq_(reply_text, stripped_text,
-                        "'%(reply)s' != %(stripped)s for %(fn)s" %
-                        {'reply': reply_text, 'stripped': stripped_text,
-                         'fn': filename})
+                    found_text_plain_part = True
+                    check_part(part)
+
+        if not found_text_plain_part:
+            pytest.fail('Could not find text/plain part in email {0}'.format(filename))

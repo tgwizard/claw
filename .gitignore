@@ -4,10 +4,12 @@
 *.so
 
 # Packages
+venv/
 *.egg
 *.egg-info
 dist
 build
+.eggs
 eggs
 parts
 bin

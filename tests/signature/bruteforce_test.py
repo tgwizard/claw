@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from .. import *
+from mock import Mock, patch
+from nose.tools import *
 
-import os
 
-from flanker import mime
-
-from talon.signature import bruteforce
+from claw.signature import bruteforce
 
 
 def test_empty_body():

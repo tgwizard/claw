@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from . import *
 from . fixtures import *
 
 import regex as re
+from nose.tools import *
 from flanker import mime
-
-from talon import quotations
-
 import html2text
+
+from claw import quotations
 
 
 RE_WHITESPACE = re.compile("\s")

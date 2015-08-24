@@ -1,6 +1,8 @@
-from . import *
+# -*- coding: utf-8 -*-
 
-from talon import utils
+from nose.tools import *
+
+from claw import utils
 
 
 def test_get_delimiter():

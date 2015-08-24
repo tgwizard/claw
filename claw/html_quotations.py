@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 The module's functions operate on message bodies trying to extract original
 messages (without quoted messages) from html

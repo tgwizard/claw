@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from . import *
-from . fixtures import *
+from mock import Mock, patch
+from nose.tools import *
 
-from flanker import mime
-
-from talon import quotations
+from claw import quotations
 
 
 @patch.object(quotations, 'extract_from_html')
