@@ -1,6 +1,10 @@
+### v1.1.0 2015-08-25
+
+ - Better support for German reply headers: [GH-2](https://github.com/tictail/claw/pull/2).
+
 ### v1.0.1 2015-08-23
 
- - Fixed bug when parsing replies from Apple Mail, where a trailing `>` would be included.
+ - Fixed bug when parsing replies from Apple Mail, where a trailing `>` would be included: [GH-1](https://github.com/tictail/claw/pull/1).
 
 ### v1.0.0 2015-08-22
 
