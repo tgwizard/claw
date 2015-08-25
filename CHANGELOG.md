@@ -1,3 +1,7 @@
+### v1.2.0 2015-08-25
+
+ - Strip last root-level `<blockquote>` instead of first when parsing HTML replies: [GH-4](https://github.com/tictail/claw/pull/4).
+
 ### v1.1.0 2015-08-25
 
  - Better support for German reply headers: [GH-2](https://github.com/tictail/claw/pull/2).
