@@ -1,4 +1,4 @@
-.PHONY: install test release clean-dist
+.PHONY: install test release post-dep-install clean-dist
 
 COVERAGE_SOURCES = claw
 
@@ -13,6 +13,9 @@ test:
 release: clean-dist
 	python setup.py sdist
 	twine upload dist/*
+
+post-dep-install:
+	@echo "Dependencies installed successfully"
 
 clean-dist:
 	rm -rf dist

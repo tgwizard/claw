@@ -1,0 +1,8 @@
+dependencies:
+  override:
+    - tox post-dep-install
+  cache_directories:
+    - ".tox"
+test:
+  override:
+    - tox
