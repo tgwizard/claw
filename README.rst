@@ -105,7 +105,7 @@ Development
 
 Release new version:
 
-Bump the version in `setup.py`, and then
+Bump the version in setup.py and update CHANGELOG.md, and then:
 
 .. code::
 

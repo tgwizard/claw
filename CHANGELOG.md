@@ -1,3 +1,7 @@
+### v1.3.0 2015-09-16
+
+ - Better support for Scandinavian languages: [GH-6](https://github.com/tictail/claw/pull/6).
+
 ### v1.2.0 2015-08-25
 
  - Strip last root-level `<blockquote>` instead of first when parsing HTML replies: [GH-4](https://github.com/tictail/claw/pull/4).
