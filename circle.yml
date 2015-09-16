@@ -1,5 +1,6 @@
 dependencies:
   override:
+    - pip install -U tox
     - tox post-dep-install
   cache_directories:
     - ".tox"
