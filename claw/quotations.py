@@ -35,7 +35,11 @@ RE_ON_DATE_SMB_WROTE = re.compile(
             # Dutch
             'Op',
             # German
-            'Am'
+            'Am',
+            # Norwegian
+            u'På',
+            # Swedish, Danish
+            'Den',
         )),
         # Date and sender separator
         u'|'.join((
@@ -55,7 +59,9 @@ RE_ON_DATE_SMB_WROTE = re.compile(
             # Dutch
             'schreef','verzond','geschreven',
             # German
-            'schrieb'
+            'schrieb',
+            # Norwegian, Swedish
+            'skrev',
         ))
     ))
 # Special case for languages where text is translated like this: 'on {date} wrote {somebody}:'
@@ -127,9 +133,9 @@ RE_ORIGINAL_MESSAGE = re.compile(u'[\s]*[-]+[ ]*({})[ ]*[-]+'.format(
 RE_FROM_COLON_OR_DATE_COLON = re.compile(u'(_+\r?\n)?[\s]*(:?[*]?{})[\s]?:[*]? .*'.format(
     u'|'.join((
         # "From" in different languages.
-        'From', 'Van', 'De', 'Von', 'Fra',
+        'From', 'Van', 'De', 'Von', 'Fra', u'Från',
         # "Date" in different languages.
-        'Date', 'Datum', u'Envoyé'
+        'Date', 'Datum', u'Envoyé', 'Skickat', 'Sendt',
     ))), re.I)
 
 SPLITTER_PATTERNS = [
