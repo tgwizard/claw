@@ -105,6 +105,8 @@ Development
 
 Release new version:
 
+Bump the version in `setup.py`, and then
+
 .. code::
 
     make release
